@@ -1,16 +1,23 @@
 #!/bin/bash
 
-# Loop from 2 to 12
-for ((i = 2; i <= 12; i++)); do
-    old_folder="LAB$i"
-    new_folder="LAB$(printf "%03d" $i)"
-    
-    # Check if the old folder exists
-    if [ -d "$old_folder" ]; then
-        # Rename the folder
-        mv "$old_folder" "$new_folder"
-        echo "Renamed folder: $old_folder to $new_folder"
-    else
-        echo "Folder does not exist: $old_folder"
-    fi
+# Loop through numbers (2 to 12)
+for i in {2..12}; do
+  # Construct old name (without leading zeros)
+  old_name="LAB$i"
+
+  # Construct new folder name with leading zero
+  if [ $i -lt 10 ]; then
+    new_name="LAB$(printf "%02d" $i)"  
+  else
+    new_name="LAB$(printf "%03d" $i)"
+  fi
+  
+  # Check if old folder exists
+  if [ -d "$old_name" ]; then
+    # Rename the folder using mv command
+    mv "$old_name" "$new_name"
+    echo "Renamed folder: $old_name to $new_name"
+  else
+    echo "Folder not found: $old_name"
+  fi
 done
