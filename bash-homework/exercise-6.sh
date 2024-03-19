@@ -45,4 +45,4 @@ lsblk
 
 echo
 echo "L. Currently running process:"
-ps aux
+top
